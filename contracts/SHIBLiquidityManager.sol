@@ -23,7 +23,7 @@ contract SHIBLiquidityManager is Ownable {
     event LiquidityAdded(address indexed user, uint256 shibAmount, uint256 pairedAmount, uint256 liquidity);
     event LiquidityRemoved(address indexed user, uint256 liquidity, uint256 shibAmount, uint256 pairedAmount);
     event AutoLiquidityAdded(uint256 shibAmount, uint256 pairedAmount, uint256 liquidity);
-
+    
     constructor(
         address _router,
         address _shibToken,
@@ -33,10 +33,10 @@ contract SHIBLiquidityManager is Ownable {
         factory = IUniswapV2Factory(router.factory());
         shibToken = IMeme(_shibToken);
         pairedToken = IERC20(_pairedToken);
-        
         // 永久豁免本合约的交易费
         IMeme(_shibToken).excludeFromFee(address(this));
     }
+
 
     /**
      * 为SHIB风格代币添加流动性（豁免税费）
